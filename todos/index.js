@@ -12,6 +12,25 @@ app.on('ready', () => {
 
 var menuTemplate = [
     {
-        label: 'file'
+        label: 'File',
+        submenu: [
+            { label: 'New Todo' },
+            { label: 'Rage Quit', accelerator: 'CommandOrControl+Q', click () { app.quit(); } },
+            {
+                label: 'Exit',
+                role: 'quit',
+                accelerator: (() => {
+                    return (process.platform === 'darwin') ? 'Command+Q' : 'Alt+F4';
+                })()
+            }
+        ]
+    },
+    {
+        label: 'Dev Tools',
+        role: 'toggledevtools'
     }
 ];
+
+if (process.platform === 'darwin') {
+    menuTemplate.unshift({});
+}
