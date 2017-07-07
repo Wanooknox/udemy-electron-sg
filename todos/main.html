@@ -4,5 +4,24 @@
     </head>
     <body>
         <h1>My Todos</h1>
+        <ul>
+
+        </ul>
+
+        <script>
+            const { ipcRenderer } = require('electron');
+
+            ipcRenderer.on('todo:add', (event, todo) => {
+                const item = document.createElement('li');
+                const text = document.createTextNode(todo);
+                item.appendChild(text);
+
+                document.querySelector('ul').appendChild(item);
+            });
+
+            ipcRenderer.on('todo:clear', (event) => {
+                document.querySelector('ul').innerHTML = '';
+            });
+        </script>
     </body>
 </html>
