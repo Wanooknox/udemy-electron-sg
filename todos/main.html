@@ -10,17 +10,18 @@
 
         <script>
             const { ipcRenderer } = require('electron');
+            const list = document.querySelector('ul');
 
             ipcRenderer.on('todo:add', (event, todo) => {
                 const item = document.createElement('li');
                 const text = document.createTextNode(todo);
                 item.appendChild(text);
 
-                document.querySelector('ul').appendChild(item);
+                list.appendChild(item);
             });
 
             ipcRenderer.on('todo:clear', (event) => {
-                document.querySelector('ul').innerHTML = '';
+                list.innerHTML = '';
             });
         </script>
     </body>

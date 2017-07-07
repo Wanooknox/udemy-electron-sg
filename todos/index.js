@@ -43,6 +43,7 @@ var menuTemplate = [
             },
             {
                 label: 'Clear All',
+                accelerator: 'Ctrl+Shift+Delete',
                 click: function () {
                     mainWindow.webContents.send('todo:clear');
                 }
