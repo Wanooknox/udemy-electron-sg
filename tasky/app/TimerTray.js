@@ -1,4 +1,4 @@
-const { Tray } = require('electron');
+const { Tray, Menu } = require('electron');
 
 class TimerTray extends Tray {
     constructor (iconPath, mainWindow) {
@@ -10,6 +10,7 @@ class TimerTray extends Tray {
 
     wireUp () {
         this.on('click', this.onClick.bind(this));
+        this.on('right-click', this.onRightClick);
     };
 
     onClick (event, bounds) {
@@ -26,6 +27,16 @@ class TimerTray extends Tray {
             });
             this.mainWindow.show();
         }
+    };
+
+    onRightClick () {
+        const menuConfig = Menu.buildFromTemplate([
+            {
+                label: 'Quit',
+                role: 'quit'
+            }
+        ]);
+        this.popUpContextMenu(menuConfig);
     };
 }
 
