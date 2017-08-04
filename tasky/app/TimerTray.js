@@ -4,6 +4,7 @@ class TimerTray extends Tray {
     constructor (iconPath, mainWindow) {
         super(iconPath);
         this.mainWindow = mainWindow;
+        this.setToolTip('Timer App');
         this.wireUp();
     }
 
