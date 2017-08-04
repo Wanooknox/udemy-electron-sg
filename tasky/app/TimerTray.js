@@ -9,7 +9,7 @@ class TimerTray extends Tray {
     }
 
     wireUp () {
-        this.on('click', this.onClick.bind(this));
+        this.on('click', this.onClick);
         this.on('right-click', this.onRightClick);
     };
 

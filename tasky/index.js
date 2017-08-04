@@ -1,21 +1,13 @@
-const {app, BrowserWindow} = require('electron');
+const { app } = require('electron');
 const path = require('path');
 const TimerTray = require('./app/TimerTray');
+const MainWindow = require('./app/MainWindow');
 
 let mainWindow;
 let tres;
 
 app.on('ready', () => {
-    mainWindow = new BrowserWindow({
-        show: false,
-        height: 500,
-        width: 300,
-        frame: false,
-        resizable: false,
-        skipTaskbar: true
-    });
-    mainWindow.loadURL(`file://${__dirname}/src/index.html`);
-    mainWindow.on('blur', mainWindow.hide);
+    mainWindow = new MainWindow(`file://${__dirname}/src/index.html`);
 
     mainWindow.once('ready-to-show', () => {
         var iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
