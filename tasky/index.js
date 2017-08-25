@@ -13,5 +13,6 @@ app.on('ready', () => {
         var iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
         var iconPath = path.join(__dirname, `./src/assets/${iconName}`);
         tres = new TimerTray(iconPath, mainWindow);
+        tres.callMeToMakeLintLessAnnoying();
     });
 });
