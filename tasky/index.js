@@ -1,4 +1,4 @@
-const { app } = require('electron');
+const { app, ipcMain } = require('electron');
 const path = require('path');
 const TimerTray = require('./app/TimerTray');
 const MainWindow = require('./app/MainWindow');
@@ -13,6 +13,9 @@ app.on('ready', () => {
         var iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
         var iconPath = path.join(__dirname, `./src/assets/${iconName}`);
         tres = new TimerTray(iconPath, mainWindow);
-        tres.callMeToMakeLintLessAnnoying();
     });
+});
+
+ipcMain.on('update-timer', (event, timeLeft) => {
+    tres.setTitle(timeLeft); // MacOS Only.
 });

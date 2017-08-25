@@ -38,10 +38,6 @@ class TimerTray extends Tray {
         ]);
         this.popUpContextMenu(menuConfig);
     };
-
-    callMeToMakeLintLessAnnoying () {
-
-    }
 }
 
 module.exports = TimerTray;
