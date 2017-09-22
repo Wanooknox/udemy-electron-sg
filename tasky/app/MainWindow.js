@@ -8,7 +8,8 @@ class MainWindow extends BrowserWindow {
             width: 300,
             frame: false,
             resizable: false,
-            skipTaskbar: true
+            skipTaskbar: true,
+            webPrefrences: { backgroundThrottling: false }
         });
         this.wireUp();
         this.loadURL(url);
