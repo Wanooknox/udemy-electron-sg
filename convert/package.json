@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "webpack": "webpack-dev-server",
-    "start": "electron ."
+    "start": "electron .",
+    "launch": "webpack-dev-server & electron ."
   },
   "author": "Rallycoding",
   "devDependencies": {
