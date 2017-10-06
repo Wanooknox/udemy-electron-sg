@@ -28,3 +28,14 @@ ipcMain.on('videos:added', (event, videos) => {
         mainWin.webContents.send('metadata:complete', results);
     });
 });
+
+ipcMain.on('convert:start', (event, videos) => {
+    const key = Object.keys(videos);
+    const vid = videos[key];
+    const outputDir = vid.path.split(vid.name)[0];
+    const outputName = vid.name.split('.')[0];
+    const outputPath = `${outputDir}${outputName}.${vid.format}`;
+    console.log(outputPath);
+    ffmpeg(vid.path)
+        .output(outputPath);
+});
