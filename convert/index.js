@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const ffmpeg = require('fluent-ffmpeg');
 const _ = require('lodash');
 
@@ -43,4 +43,8 @@ ipcMain.on('convert:start', (event, videos) => {
             .on('end', () => mainWin.webContents.send('conversion:end', {video: vid, outputPath: outputPath}))
             .run();
     });
+});
+
+ipcMain.on('folder:open', function (event, outputPath) {
+    shell.showItemInFolder(outputPath);
 });
