@@ -30,12 +30,14 @@ ipcMain.on('videos:added', (event, videos) => {
 });
 
 ipcMain.on('convert:start', (event, videos) => {
-    const key = Object.keys(videos);
-    const vid = videos[key];
-    const outputDir = vid.path.split(vid.name)[0];
-    const outputName = vid.name.split('.')[0];
-    const outputPath = `${outputDir}${outputName}.${vid.format}`;
-    console.log(outputPath);
-    ffmpeg(vid.path)
-        .output(outputPath);
+    _.each(videos, vid => {
+        const outputDir = vid.path.split(vid.name)[0];
+        const outputName = vid.name.split('.')[0];
+        const outputPath = `${outputDir}${outputName}.${vid.format}`;
+        console.log(outputPath);
+        ffmpeg(vid.path)
+            .output(outputPath)
+            .on('end', () => mainWin.webContents.send('conversion:end', {video: vid, outputPath: outputPath}))
+            .run();
+    });
 });
